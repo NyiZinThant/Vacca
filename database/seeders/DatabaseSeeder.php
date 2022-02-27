@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
+use App\Models\VaccineForm;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +16,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        User::factory(1)->create();
+        VaccineForm::factory()->count(20)->create();
+        DB::table('vaccines')->insert([
+            'id' => 1,
+            'name' => "Pfizer",
+        ]);
+        DB::table('vaccines')->insert([
+            'id' => 2,
+            'name' => "CoviShield",
+        ]);
+        DB::table('vaccines')->insert([
+            'id' => 3,
+            'name' => "Sinovac",
+        ]);
     }
 }

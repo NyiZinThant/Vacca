@@ -19,53 +19,62 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <div class="container justify-content-between">
+                <div>
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        {{ config('app.name', 'Laravel') }}
+                    </a>
+                </div>
+
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" >
+                    <span class="menu-icon-bar"></span>
+                    <span class="menu-icon-bar"></span>
+                    <span class="menu-icon-bar"></span>
                 </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-                        <li><a href="{{ url('/') }}">Infections</a></li>
-                        <li style="margin-left: 10px"><a href="{{ url('/news') }}">News</a></li>
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
+                
+                <div id="main-nav" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li><a href="{{ url('/') }}"
+                                class="nav-item nav-link nav-custom {{ Route::is('home') ? 'active' : '' }}">Infections</a>
+                        </li>
+                        <li><a href="{{ url('/news') }}"
+                                class="nav-item nav-link nav-custom {{ Route::is('news') ? 'active' : '' }}">News</a>
+                        </li>
+                        <li><a href="{{ url('/vaccination') }}"
+                                class="nav-item nav-link nav-custom {{ Route::is('vaccine') ? 'active' : '' }}">Vaccination</a>
+                        </li>
                         @guest
                             @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <li>
+                                    <a class="nav-item nav-link nav-custom"
+                                        href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <li>
+                                    <a class="nav-item nav-link nav-custom"
+                                        href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                <a id="navbarDropdown" class="nav-link nav-custom dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
+                                    <a class="dropdown-item nav-custom" style="font-size: 13px !important"
+                                        href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                                             document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -80,16 +89,53 @@
                 </div>
             </div>
         </nav>
-
-        <main class="py-2">
+       
+        <main>
             @yield('content')
         </main>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container">
-                <p class="m-0 text-center text-white">Copyright &copy; <a href="http://github.com/NyiZinThant">Nyi</a> 2022</p>
+                <p class="m-0 text-center text-white">Copyright &copy; <a href="http://github.com/NyiZinThant">Nyi</a>
+                    2022</p>
             </div>
         </footer>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+                integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script>
+            $(window).on('scroll', function() {
+                if ($(this).scrollTop() >= 200) {
+                    $('.navbar').addClass('fixed-top');
+                } else if ($(this).scrollTop() == 0) {
+                    $('.navbar').removeClass('fixed-top');
+                }
+            });
+
+            function adjustNav() {
+                var winWidth = $(window).width(),
+                    dropdown = $('.dropdown'),
+                    dropdownMenu = $('.dropdown-menu');
+
+                if (winWidth >= 768) {
+                    dropdown.on('mouseenter', function() {
+                        $(this).addClass('show')
+                            .children(dropdownMenu).addClass('show');
+                    });
+
+                    dropdown.on('mouseleave', function() {
+                        $(this).removeClass('show')
+                            .children(dropdownMenu).removeClass('show');
+                    });
+                } else {
+                    dropdown.off('mouseenter mouseleave');
+                }
+            }
+
+            $(window).on('resize', adjustNav);
+
+            adjustNav();
+        </script>
     </div>
 </body>
 

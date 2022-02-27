@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\VaccineController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -16,12 +17,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name("home");
 
 Route::get('/news', function(){
     return view('news');
-});
+})->name("news");
+
+Route::get('/vaccination', [VaccineController::class, "index"])->name('vaccine');
+
+Route::post('/vaccination', [VaccineController::class, 'submit'])->name('vaccine.submit');
+
+Route::get('/info', fn()=> view("info"))->name('info');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
