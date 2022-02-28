@@ -10,6 +10,6 @@ class VaccineForm extends Model
     use HasFactory;
 
     public function vaccine(){
-        $this->belongsTo('App\Models\Vaccine');
+        return $this->belongsTo("App\Models\Vaccine");
     }
 }

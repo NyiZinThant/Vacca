@@ -30,7 +30,13 @@ class AdminController extends Controller
     }
     public function show()
     {
-        $data = VaccineForm::all();
-        return view("admin.data", compact($data));
+        $data = VaccineForm::latest()->paginate(9);
+        return view("admin.data", ["data"=>$data]);
+    }
+    public function search(Request $request)
+    {
+        $data = VaccineForm::query()->where('name', 'LIKE', "%{$request->search}%")
+        ->orWhere('email', 'LIKE', "%{$request->search}%")->latest()->paginate(9);
+        return view("admin.data", ["data"=>$data]);
     }
 }

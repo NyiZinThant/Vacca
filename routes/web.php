@@ -33,5 +33,8 @@ Route::get('/info', fn()=> view("info"))->name('info');
 Auth::routes();
 
 Route::get('/admin/dashboard', [AdminController::class, "index"])->name('dashboard');
+
 Route::get('/admin/data', [AdminController::class, "show"])->name('data');
+
+Route::post('/admin/data', [AdminController::class, "search"])->name('data');
 

@@ -17,6 +17,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ asset('/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('/dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/adminstyle.css') }}">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -40,7 +41,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <i class="fas fa-search"></i>
                     </a>
                     <div class="navbar-search-block">
-                        <form class="form-inline" method="post" action="category.php">
+                        <form class="form-inline" method="post" action="{{ route('data') }}">
+                            @csrf
                             <div class="input-group input-group-sm">
                                 <input class="form-control form-control-navbar" name="search" type="search"
                                     placeholder="Search" aria-label="Search">
