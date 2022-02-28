@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VaccineController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -30,4 +31,7 @@ Route::post('/vaccination', [VaccineController::class, 'submit'])->name('vaccine
 Route::get('/info', fn()=> view("info"))->name('info');
 
 Auth::routes();
+
+Route::get('/admin/dashboard', [AdminController::class, "index"])->name('dashboard');
+Route::get('/admin/data', [AdminController::class, "show"])->name('data');
 

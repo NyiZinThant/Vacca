@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <header class="bg-dark py-5">
+    <header class="bg-dark py-5 heading">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
                 <h1 class="display-4 fw-bolder">News</h1>
@@ -40,9 +40,6 @@
                     let card = document.createElement('div');
                     card.classList = "card h-100";
 
-                    let cardHead = document.createElement('div');
-                    cardHead.classList = "card-header";
-
                     let cardBody = document.createElement('div');
                     cardBody.classList = "card-body p-4 text-center";
 
@@ -50,10 +47,8 @@
                     title.classList = "fw-bolder";
                     title.innerText = covidNews.articles[i].title;
 
-
-                    cardHead.appendChild(newsImage);
                     cardBody.appendChild(title);
-                    card.appendChild(cardHead);
+                    card.appendChild(newsImage);
                     card.appendChild(cardBody);
                     cardContainer.appendChild(card);
                     linkToArticle.appendChild(cardContainer);

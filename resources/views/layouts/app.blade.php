@@ -25,19 +25,17 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark">
-            <div class="container justify-content-between">
-                <div>
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
-
-                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" >
+            <div class="container">
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    {{ config('app.name', 'Laravel') }}
+                </a>
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false">
                     <span class="menu-icon-bar"></span>
                     <span class="menu-icon-bar"></span>
                     <span class="menu-icon-bar"></span>
                 </button>
-                
+
                 <div id="main-nav" class="collapse navbar-collapse">
                     <ul class="navbar-nav ml-auto">
                         <li><a href="{{ url('/') }}"
@@ -71,10 +69,15 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    @if (auth()->user()->name == 'admin')
+                                        <a class="dropdown-item nav-custom" style="font-size: 13px !important"
+                                            href="{{ route('dashboard') }}"">
+                                            {{ __('Dashboard') }}
+                                        </a>
+                                    @endif
                                     <a class="dropdown-item nav-custom" style="font-size: 13px !important"
                                         href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                                             document.getElementById('logout-form').submit();">
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -89,7 +92,7 @@
                 </div>
             </div>
         </nav>
-       
+
         <main>
             @yield('content')
         </main>

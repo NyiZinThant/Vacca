@@ -6,8 +6,31 @@
 /* html {
   font-size: 62.5%;
 } */
+html::-webkit-scrollbar{
+  width: 0.9vw;
+}
+htmL::-webkit-scrollbar-thumb{
+  background-color: #a09d9d50;
+  border-radius: 10px;
+}
+htmL::-webkit-scrollbar-thumb:hover{
+  background-color: #c1c1c1;
+}
+htmL::-webkit-scrollbar-track{
+  background-color: transparent;
+}
+.heading{
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+.right-nav{
+  margin-left: 0;
+}
 .nav-custom{
-    font-size: 62.5% !important;
+  font-size: 62.5% !important;
+}
+.right-nav{
+  margin-left: 0;
 }
 nav{
   font-family: 'Open Sans', sans-serif;
@@ -96,7 +119,7 @@ nav{
   padding: 0;
   width: 100%;
   transition: background 0.6s ease-in;
-  z-index: 99999;
+  z-index: 1000;
 }
 .navbar .navbar-brand {
   font-family: 'Lobster', cursive;
