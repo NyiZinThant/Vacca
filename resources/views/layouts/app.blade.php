@@ -7,6 +7,27 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- COMMON TAGS -->
+    <meta charset="utf-8">
+    <title>Vacca</title>
+    <!-- Search Engine -->
+    <meta name="description" content="Protect from covid-19">
+    <!-- Schema.org for Google -->
+    <meta itemprop="name" content="Vacca">
+    <meta itemprop="description" content="Protect from covid-19">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Vacca">
+    <meta name="twitter:description" content="Protect from covid-19">
+    <!-- Open Graph general (Facebook, Pinterest & Google+) -->
+    <meta name="og:title" content="Vacca">
+    <meta name="og:description" content="Protect from covid-19">
+    <meta name="og:image" content="{{ asset('/images/20220301_143435.png') }}">
+    <meta name="og:url" content="https://vacca-mm.herokuapp.com/">
+    <meta name="og:site_name" content="Vacca">
+    <meta name="fb:admins" content="nyizinthant.nyizinthant">
+    <meta name="og:type" content="website">
+    <link rel="icon" href="{{ asset('/images/20220301_143435.png') }}" type="image/x-icon">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -23,7 +44,10 @@
 </head>
 
 <body>
-    <div id="app">
+    <div class="loading">
+        <img src="{{ asset('/images/767849400303_three_dots_waving_1.gif') }}" alt="loading">
+    </div>
+    <div id="app" class="body">
         <nav class="navbar navbar-expand-md navbar-dark">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -72,19 +96,19 @@
                                     @if (auth()->user()->name == 'admin')
                                         <a class="dropdown-item nav-custom" style="font-size: 13px !important"
                                             href="{{ route('dashboard') }}"">
-                                            {{ __('Dashboard') }}
-                                        </a>
-                                    @endif
-                                    <a class="dropdown-item nav-custom" style="font-size: 13px !important"
-                                        href="{{ route('logout') }}"
-                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                                {{ __('Dashboard') }}
+                                            </a>
+     @endif
+                                            <a class="dropdown-item nav-custom" style="font-size: 13px !important"
+                                                href="{{ route('logout') }}"
+                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        class="d-none">
-                                        @csrf
-                                    </form>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                class="d-none">
+                                                @csrf
+                                            </form>
                                 </div>
                             </li>
                         @endguest
@@ -106,7 +130,12 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
                 integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        @yield('script')
         <script>
+            $(window).on('load', function() {
+                $('.loading').fadeOut(1000);
+                $(".body").fadeIn(1000);
+            });
             $(window).on('scroll', function() {
                 if ($(this).scrollTop() >= 200) {
                     $('.navbar').addClass('fixed-top');
@@ -139,7 +168,6 @@
 
             adjustNav();
         </script>
-        @yield('script')
     </div>
 </body>
 

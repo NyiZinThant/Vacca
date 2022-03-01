@@ -36,13 +36,12 @@
                                                     <hr>
                                                     <p class="m-0"><b>Vaccine Name: </b>{{ $value->vaccine->name }}</p>
                                                     <hr>
-                                                    <a href="/admin/data/download/{{ $value->id }}" class="btn btn-secondary">Download As Pdf</a>
+                                                    <a href="/admin/data/download/{{ $value->id }}" class="btn btn-secondary"><i class="fas fa-file-download mr-2"></i>Save As Pdf</a>
                                                 </div>
                                             </div>
                                         </div>
                                     @endforeach
                                     {{ $data->links() }}
-
                                 </div>
                             </div>
                             <!-- /.card-body -->
