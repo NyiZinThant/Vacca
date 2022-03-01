@@ -38,3 +38,5 @@ Route::get('/admin/data', [AdminController::class, "show"])->name('data');
 
 Route::post('/admin/data', [AdminController::class, "search"])->name('data');
 
+Route::get('/admin/data/download/{id}', [AdminController::class, "download"]);
+

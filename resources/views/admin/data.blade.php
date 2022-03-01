@@ -36,7 +36,7 @@
                                                     <hr>
                                                     <p class="m-0"><b>Vaccine Name: </b>{{ $value->vaccine->name }}</p>
                                                     <hr>
-                                                    <a href="#" class="btn btn-secondary">Download As Pdf</a>
+                                                    <a href="/admin/data/download/{{ $value->id }}" class="btn btn-secondary">Download As Pdf</a>
                                                 </div>
                                             </div>
                                         </div>

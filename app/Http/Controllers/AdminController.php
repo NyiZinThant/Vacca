@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\VaccineForm;
 use Illuminate\Http\Request;
 
@@ -38,5 +39,14 @@ class AdminController extends Controller
         $data = VaccineForm::query()->where('name', 'LIKE', "%{$request->search}%")
         ->orWhere('email', 'LIKE', "%{$request->search}%")->latest()->paginate(9);
         return view("admin.data", ["data"=>$data]);
+    }
+    public function download($id)
+    {
+        // $data = VaccineForm::where('id', $id)->get();
+        $data['title'] = "Title";
+        $data['form'] = VaccineForm::where('id', $id)->get();
+        // view()->share('data', $data);
+        $pdf = Pdf::loadView('admin.Pdf.pdftemplate', $data);
+        return $pdf->download($data['form'][0]->id .".pdf");
     }
 }
