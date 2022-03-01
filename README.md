@@ -60,3 +60,18 @@ Migrate and Seed
 ```
 
 #### Now you can access the server at http://localhost:8000
+## User Guide
+if you want to login as normal user 
+    
+You can register new account
+    
+or
+    
+If you want to login as admin
+    
+I've already added admin account with seeding
+    
+### Login with this email and password
+email: <b>admin@gmail.com</b>
+    
+password: <b>password</b>
