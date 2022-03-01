@@ -139,6 +139,7 @@
 
             adjustNav();
         </script>
+        @yield('script')
     </div>
 </body>
 

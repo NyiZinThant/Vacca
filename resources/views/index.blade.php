@@ -18,6 +18,9 @@
         </div>
         </div>
     </section>
+@endsection
+
+@section('script')
     <script>
         let covidContainer = document.getElementById('covid-container');
         fetch('https://api.covid19api.com/summary')
