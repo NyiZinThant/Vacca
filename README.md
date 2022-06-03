@@ -44,7 +44,11 @@ Run ` npm run dev `  twice
 Copy the example env file and make the required configuration changes in the .env file
 
 ```
- cp .env.example .env 
+cp .env.example .env 
+```
+Generate an app encryption key
+```
+php artisan key:generate
 ```
 
 #### Set the database connection in .env before migrating
