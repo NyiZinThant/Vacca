@@ -31,7 +31,7 @@ class AdminController extends Controller
     }
     public function show()
     {
-        $data = VaccineForm::latest()->paginate(9);
+        $data = VaccineForm::with('vaccine')->latest()->paginate(9);
         return view("admin.data", ["data"=>$data]);
     }
     public function search(Request $request)
