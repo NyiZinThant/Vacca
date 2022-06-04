@@ -42,10 +42,8 @@ class AdminController extends Controller
     }
     public function download($id)
     {
-        // $data = VaccineForm::where('id', $id)->get();
         $data['title'] = "Title";
         $data['form'] = VaccineForm::where('id', $id)->get();
-        // view()->share('data', $data);
         $pdf = Pdf::loadView('admin.Pdf.pdftemplate', $data);
         return $pdf->download($data['form'][0]->id .".pdf");
     }
