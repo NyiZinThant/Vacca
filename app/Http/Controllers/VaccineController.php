@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreFormRequest;
 use App\Models\Vaccine;
 use App\Models\VaccineForm;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class VaccineController extends Controller
 {
@@ -18,7 +16,8 @@ class VaccineController extends Controller
     public function index()
     {
         $vaccines = Vaccine::all();
-        return view('vaccination', compact("vaccines"));
+
+        return view('vaccination', compact('vaccines'));
     }
 
     public function submit(StoreFormRequest $request, VaccineForm $vaccineForm)
@@ -30,6 +29,7 @@ class VaccineController extends Controller
         $vaccineForm->nrc = $request->nrc;
         $vaccineForm->vaccine_id = $request->vaccine_id;
         $vaccineForm->save();
-        return redirect('info')->with("message", "Success! You have registered vaccination form.");
+
+        return redirect('info')->with('message', 'Success! You have registered vaccination form.');
     }
 }

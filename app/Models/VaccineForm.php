@@ -9,7 +9,8 @@ class VaccineForm extends Model
 {
     use HasFactory;
 
-    public function vaccine(){
+    public function vaccine()
+    {
         return $this->belongsTo("App\Models\Vaccine");
     }
 }

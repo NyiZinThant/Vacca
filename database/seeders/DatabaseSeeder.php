@@ -20,15 +20,15 @@ class DatabaseSeeder extends Seeder
         VaccineForm::factory()->count(20)->create();
         DB::table('vaccines')->insert([
             'id' => 1,
-            'name' => "Pfizer",
+            'name' => 'Pfizer',
         ]);
         DB::table('vaccines')->insert([
             'id' => 2,
-            'name' => "CoviShield",
+            'name' => 'CoviShield',
         ]);
         DB::table('vaccines')->insert([
             'id' => 3,
-            'name' => "Sinovac",
+            'name' => 'Sinovac',
         ]);
     }
 }

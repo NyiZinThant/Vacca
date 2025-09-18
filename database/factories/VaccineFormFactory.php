@@ -14,12 +14,12 @@ class VaccineFormFactory extends Factory
     public function definition()
     {
         return [
-            "name" => $this->faker->name,
-            "email" => $this->faker->email,
-            "age" => rand(16,90),
-            "address" => $this->faker->address,
-            "nrc" => $this->faker->uuid,
-            "vaccine_id" => rand(1,3),
+            'name' => $this->faker->name,
+            'email' => $this->faker->email,
+            'age' => rand(16, 90),
+            'address' => $this->faker->address,
+            'nrc' => $this->faker->uuid,
+            'vaccine_id' => rand(1, 3),
         ];
     }
 }
